@@ -92,7 +92,7 @@ def mostrar_archivo():
     m.close()
 
 
-def mostar_mayor_moneda_origen(v):
+def mostrar_mayor_moneda_origen(v):
     v_mayor = [None] * 5
     for i in range(len(v)):
         moneda_orig = v[i].obtener_codigo_moneda_origen() - 1
@@ -159,7 +159,7 @@ def main():
             if v:
                 generar_archivo(v)
                 mostrar_archivo()
-                mostar_mayor_moneda_origen(v)
+                mostrar_mayor_moneda_origen(v)
             else:
                 print("No hay datos cargados.")
 
