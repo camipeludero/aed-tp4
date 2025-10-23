@@ -92,6 +92,17 @@ def mostrar_archivo():
     m.close()
 
 
+def mostar_mayor_moneda_origen(v):
+    v_mayor = [None] * 5
+    for i in range(len(v)):
+        moneda_orig = v[i].obtener_codigo_moneda_origen() - 1
+        if v_mayor[moneda_orig] is None or calcular_comision(v[i].monto_nominal, v[i].algoritmo_comision) > calcular_comision(v_mayor[moneda_orig].monto_nominal, v_mayor[moneda_orig].algoritmo_comision):
+            v_mayor[moneda_orig] = v[i]
+
+    for e in v_mayor:
+        print(e)
+
+
 def buscar(v):
     monto_nominal = monto_nominal_actualizado = 0
 
@@ -122,11 +133,11 @@ def mayor(v):
             monto_final_almacenado = calcular_monto_final(cant[f][c])
             if monto_final_almacenado < monto_final:
                 cant[f][c] = r
-
+    moneda = ("ARS", "USD", "EUR", "GBP", "JPY")
     for f in range(cf):
         for c in range(cc):
             if cant[f][c] is not None:
-                print(cant[f][c].codigo)
+                print(f"Origen {moneda[f]} Destino {moneda[c]}: {cant[f][c].obtener_identificador_pago()}")
 
 
 def main():
@@ -148,6 +159,7 @@ def main():
             if v:
                 generar_archivo(v)
                 mostrar_archivo()
+                mostar_mayor_moneda_origen(v)
             else:
                 print("No hay datos cargados.")
 
