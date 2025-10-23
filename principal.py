@@ -55,7 +55,9 @@ def mostrar_id_pago(v):
 def generar_archivo(v):
     global FD_BIN
     n = len(v)
-    v_prom = v_acum = v_cont = [0] * 5
+    v_prom = [0] * 5
+    v_acum = [0] * 5
+    v_cont = [0] * 5
 
     m = open(FD_BIN, "wb")
     for i in range(n):
